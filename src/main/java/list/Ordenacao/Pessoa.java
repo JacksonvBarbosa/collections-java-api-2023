@@ -1,6 +1,6 @@
 package main.java.list.Ordenacao;
 
-import backUpResolvio.OrdenacaoPessoas;
+import backUpResolvidoList.OrdenacaoPessoas;
 
 import java.util.Comparator;
 

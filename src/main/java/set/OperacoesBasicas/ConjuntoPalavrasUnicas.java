@@ -4,68 +4,62 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ConjuntoPalavrasUnicas {
-  //atributos
-  private Set<String> palavrasUnicasSet;
+    //atributos
+    private Set<String> conjuntoPalavrasUnicas;
 
-  public ConjuntoPalavrasUnicas() {
-    this.palavrasUnicasSet = new HashSet<>();
-  }
 
-  public void adicionarPalavra(String palavra) {
-    palavrasUnicasSet.add(palavra);
-  }
-
-  public void removerPalavra(String palavra) {
-    if (!palavrasUnicasSet.isEmpty()) {
-      if (palavrasUnicasSet.contains(palavra)) {
-        palavrasUnicasSet.remove(palavra);
-      } else {
-        System.out.println("Palavra não encontrada no conjunto!");
-      }
-    } else {
-      System.out.println("O conjunto está vazio!");
+    public ConjuntoPalavrasUnicas() {
+        this.conjuntoPalavrasUnicas = new HashSet<>();
     }
-  }
 
-  public boolean verificarPalavra(String palavra) {
-    return palavrasUnicasSet.contains(palavra);
-  }
-
-  public void exibirPalavrasUnicas() {
-    if(!palavrasUnicasSet.isEmpty()) {
-      System.out.println(palavrasUnicasSet);
-    } else {
-      System.out.println("O conjunto está vazio!");
+    public void adicionarPalavra(String palavra) {
+        conjuntoPalavrasUnicas.add(palavra);
     }
-  }
 
-  public static void main(String[] args) {
-    // Criando uma instância da classe ConjuntoPalavrasUnicas
-    ConjuntoPalavrasUnicas conjuntoLinguagens = new ConjuntoPalavrasUnicas();
+    public void removerPalavra(String palavra) {
+        if (!conjuntoPalavrasUnicas.isEmpty()){
+            if (conjuntoPalavrasUnicas.contains(palavra)) {
+                conjuntoPalavrasUnicas.remove(palavra);
+            } else {
+                System.out.println("Palavra não existe no Conjunto listado!");
+            }
+        } else {
+            System.out.println("O conjunto está vazio!");
+        }
+    }
 
-    // Adicionando linguagens únicas ao conjunto
-    conjuntoLinguagens.adicionarPalavra("Java");
-    conjuntoLinguagens.adicionarPalavra("Python");
-    conjuntoLinguagens.adicionarPalavra("JavaScript");
-    conjuntoLinguagens.adicionarPalavra("Python");
-    conjuntoLinguagens.adicionarPalavra("C++");
-    conjuntoLinguagens.adicionarPalavra("Ruby");
+    public boolean verificarPalavra(String palavra) {
+        return conjuntoPalavrasUnicas.contains(palavra);
+    }
 
-    // Exibindo as linguagens únicas no conjunto
-    conjuntoLinguagens.exibirPalavrasUnicas();
+    public void exibirPalavrasUnicas(){
+        if (!conjuntoPalavrasUnicas.isEmpty()) {
+            System.out.println(conjuntoPalavrasUnicas);
+        } else {
+            System.out.println("O conjunto está vazio!");
+        }
+    }
 
-    // Removendo uma linguagem do conjunto
-    conjuntoLinguagens.removerPalavra("Python");
-    conjuntoLinguagens.exibirPalavrasUnicas();
+    @Override
+    public String toString() {
+        return "ConjuntoPalavrasUnicas{" +
+                "conjuntoPalavrasUnicas=" + conjuntoPalavrasUnicas +
+                '}';
+    }
 
-    // Removendo uma linguagem inexistente
-    conjuntoLinguagens.removerPalavra("Swift");
+    public static void main(String[] args) {
+        ConjuntoPalavrasUnicas conjuntoPalavrasUnicas1 = new ConjuntoPalavrasUnicas();
 
-    // Verificando se uma linguagem está no conjunto
-    System.out.println("A linguagem 'Java' está no conjunto? " + conjuntoLinguagens.verificarPalavra("Java"));
-    System.out.println("A linguagem 'Python' está no conjunto? " + conjuntoLinguagens.verificarPalavra("Python"));
+        conjuntoPalavrasUnicas1.adicionarPalavra("Futebol");
+        conjuntoPalavrasUnicas1.adicionarPalavra("Voleibol");
+        conjuntoPalavrasUnicas1.adicionarPalavra("Basketbol");
+        conjuntoPalavrasUnicas1.adicionarPalavra("Praia");
 
-    // Exibindo as linguagens únicas atualizadas no conjunto
-    conjuntoLinguagens.exibirPalavrasUnicas();
-  }
+        conjuntoPalavrasUnicas1.exibirPalavrasUnicas();
+
+        conjuntoPalavrasUnicas1.removerPalavra("Praia");
+        System.out.println(conjuntoPalavrasUnicas1.verificarPalavra("Basketbol"));
+        conjuntoPalavrasUnicas1.exibirPalavrasUnicas();
+
+    }
 }
