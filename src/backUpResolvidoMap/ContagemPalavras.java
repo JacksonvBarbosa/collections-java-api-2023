@@ -1,4 +1,4 @@
-package main.java.map.Pesquisa;
+package backUpResolvidoMap;
 
 import java.util.HashMap;
 import java.util.Map;
