@@ -4,68 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarrinhoDeCompras {
-    private List<Item> item;
+    //atributo
+    List<Item> itemList;
 
-    public CarrinhoDeCompras() {this.item = new ArrayList<>();}
+    //construtor
 
-    public void adiconarItem(String nomeItem, double precoItem, int quantidadeItem) {
-        item.add(new Item(nomeItem, precoItem, quantidadeItem));
+    public CarrinhoDeCompras() {
+        this.itemList = new ArrayList<>();
     }
 
-    public void removerItem(String nomeItem) {
-        List<Item> itemParaRemover = new ArrayList<>();
-        if (!item.isEmpty()) {
-            for (Item it : item) {
-                if (it.getNomeItem().equalsIgnoreCase(nomeItem)) {
-                    itemParaRemover.add(it);
-                }
-            }
-            item.removeAll(itemParaRemover);
-        } else {
-            System.out.println("A lista está vazía!");
-        }
+    public void adicionarItem(String nome, double preco, int quantidade) {
+        Item item = new Item(nome, preco, quantidade);
+        //preciso antes de adicionar ao itemlist instanciar a classe Item como acima
+        //criar um atributo dessa classe instanciada para passar a lista
+        itemList.add(item);
     }
-
-    public double calcularValorTotal() {
-        double valorTotal = 0d;
-        if (!item.isEmpty()) {
-            for (Item i : item) {
-                valorTotal += i.getPrecoItem() * i.getQuantidadeItem();
-            }
-            return valorTotal;
-        } else {
-            throw new RuntimeException("A lista está vazía!");
-        }
-    }
-
-    public void exibirItens() {
-        if(!item.isEmpty()){
-            System.out.println(item);
-        } else {
-            System.out.println("A lista está vazia!");
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "CarrinhoDeCompras{" +
-                "item=" + item +
-                '}';
-    }
-
-    public static void main(String[] args) {
-        CarrinhoDeCompras carrinhoDeCompras = new CarrinhoDeCompras();
-
-        carrinhoDeCompras.adiconarItem("Balão", 50.0, 2);
-        carrinhoDeCompras.adiconarItem("Camiseta", 120.0, 4);
-        carrinhoDeCompras.adiconarItem("Camiseta", 120.0, 4);
-        carrinhoDeCompras.exibirItens();
-        System.out.println("Total da Compra: " + carrinhoDeCompras.calcularValorTotal());
-
-        carrinhoDeCompras.removerItem("Balão");
-        carrinhoDeCompras.exibirItens();
-        System.out.println("Total da Compra: " + carrinhoDeCompras.calcularValorTotal());
-
-    }
-
 }

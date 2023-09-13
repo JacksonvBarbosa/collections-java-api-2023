@@ -1,13 +1,15 @@
 package main.java.list.OperacoesBasicas;
 
 public class Tarefa {
-    //atributo
+    //atributos
     private String descricao;
 
+    //construtor
     public Tarefa(String descricao) {
         this.descricao = descricao;
     }
 
+    //Getters
     public String getDescricao() {
         return descricao;
     }
