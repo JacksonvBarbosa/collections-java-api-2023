@@ -5,39 +5,41 @@ import java.util.Objects;
 public class Contato {
     //atributos
     private String nome;
-    private int numero;
+    private int numeroTelefone;
 
-    public Contato(String nome, int numero) {
+    public Contato(String nome, int numeroTelefone) {
         this.nome = nome;
-        this.numero = numero;
+        this.numeroTelefone = numeroTelefone;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public int getNumero() {
-        return numero;
+    public int getNumeroTelefone() {
+        return numeroTelefone;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setNumeroTelefone(int numeroTelefone) {
+        this.numeroTelefone = numeroTelefone;
+    }
+
+    @Override
+    public String toString() {
+        return " \nContato: " +
+                " \nnome = " + nome +
+                " \nnumeroTelefone = " + numeroTelefone + "\n";
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Contato contato)) return false;
-        return Objects.equals(getNome(), contato.getNome());
+        return Objects.equals(nome, contato.nome);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNome());
-    }
-
-    @Override
-    public String toString() {
-        return "\nContato: " + nome + " -Num: " + numero;
+        return Objects.hash(nome);
     }
 }

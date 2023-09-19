@@ -84,7 +84,7 @@ public class ListaTarefas {
     }
 
     if (tarefaParaMarcarComoPendente != null) {
-      tarefaParaMarcarComoPendente.setConcluida(true);
+      tarefaParaMarcarComoPendente.setConcluida(false);
     } else {
       System.out.println("Tarefa não encontrada na lista.");
     }
@@ -121,6 +121,7 @@ public class ListaTarefas {
     // Obtendo tarefas concluídas
     System.out.println(listaTarefas.obterTarefasConcluidas());
 
+    System.out.println();
     // Obtendo tarefas pendentes
     System.out.println(listaTarefas.obterTarefasPendentes());
 
@@ -128,6 +129,7 @@ public class ListaTarefas {
     listaTarefas.marcarTarefaConcluida("Ler livro");
     listaTarefas.marcarTarefaConcluida("Estudar Java");
     listaTarefas.exibirTarefas();
+    System.out.println();
 
     // Marcando tarefas como pendentes
     listaTarefas.marcarTarefaPendente("Estudar Java");

@@ -1,67 +1,86 @@
 package main.java.set.Pesquisa;
 
-import javax.sound.midi.Soundbank;
+import backUpResolvidoList.Pessoa;
+
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class AgendaContatos {
-    //atributos
+    //atributo
     private Set<Contato> contatoSet;
 
     public AgendaContatos() {
         this.contatoSet = new HashSet<>();
     }
 
-    public void adicionarContato(String nome, int numero) {
-        contatoSet.add(new Contato(nome, numero));
-    }
-
-    public void exibirContatos() {
-        System.out.println(contatoSet);
+    public void adicionarContato(String nome, int numeroelefone) {
+        contatoSet.add(new Contato(nome, numeroelefone));
     }
 
     public Set<Contato> pesquisarPorNome(String nome) {
-        Set<Contato> contarosPorNome = new HashSet<>();
-        for (Contato contato: contatoSet) {
-            if (contato.getNome().startsWith(nome)){
-                contarosPorNome.add(contato);
+        Set<Contato> pesquisaPeloNome = new HashSet<>();
+        if (!contatoSet.isEmpty()) {
+            for (Contato n : contatoSet) {
+                if (n.getNome().startsWith(nome)) {
+                    pesquisaPeloNome.add(n);
+                }
             }
+            return pesquisaPeloNome;
+        } else {
+            throw new RuntimeException("A lista está vázia");
         }
-        return contarosPorNome;
     }
 
     public Contato atualizarNumeroContato(String nome, int novoNumero) {
-        Contato contatoAtualizado = null;
-        for (Contato contato: contatoSet) {
-            if (contato.getNome().equalsIgnoreCase(nome)) {
-                contato.setNumero(novoNumero);
-                contatoAtualizado = contato;
-                break;
+        Contato numeroParaAtualizar = null;
+        if (!contatoSet.isEmpty()) {
+            for (Contato c : contatoSet) {
+                if (c.getNome().equalsIgnoreCase(nome)) {
+                    c.setNumeroTelefone(novoNumero);
+                    numeroParaAtualizar = c;
+                    break;
+                }
             }
+        } else {
+            System.out.println("A lista está vázia!!");
         }
-        return contatoAtualizado;
+        return numeroParaAtualizar;
+    }
+
+    public int quantidadeDeContatos() {
+        return contatoSet.size();
+    }
+    public void exibirContatos() {
+        System.out.println(contatoSet);
     }
 
     public static void main(String[] args) {
         AgendaContatos agendaContatos = new AgendaContatos();
 
+        System.out.println("Sua Agenda tem " + agendaContatos.quantidadeDeContatos() + " contato(s)\n");
         agendaContatos.exibirContatos();
 
-        agendaContatos.adicionarContato("Jackson", 2222);
-        agendaContatos.adicionarContato("Jackson", 2121);
-        agendaContatos.adicionarContato("Jackson Ventura", 2020);
-        agendaContatos.adicionarContato("Jackson Barbosa", 2424);
-        agendaContatos.adicionarContato("Jose", 1122);
-        agendaContatos.adicionarContato("Joao", 1133);
+        //adicionar contatos
+        agendaContatos.adicionarContato("Jose", 1111);
+        agendaContatos.adicionarContato("Patricia",1234);
+        agendaContatos.adicionarContato("Mauro", 2222);
+        agendaContatos.adicionarContato("Ailton", 4321);
 
+        System.out.println("Sua Agenda tem " + agendaContatos.quantidadeDeContatos() + " contato(s)\n");
         agendaContatos.exibirContatos();
-
+        //pesquisar por nome
+        System.out.println();
         System.out.println(agendaContatos.pesquisarPorNome("Jose"));
 
-        System.out.println(agendaContatos.atualizarNumeroContato("Jackson Ventura", 505050));
+        //atualizar numero de telefone
+        agendaContatos.atualizarNumeroContato("Patricia", 54321);
+        agendaContatos.atualizarNumeroContato("Mauro", 112233);
+        agendaContatos.atualizarNumeroContato("ailton", 5897412);
+
+
+        System.out.println("Sua Agenda tem " + agendaContatos.quantidadeDeContatos() + " contato(s)\n");
         agendaContatos.exibirContatos();
-
-
-
     }
+
 }

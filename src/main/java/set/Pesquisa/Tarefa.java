@@ -1,42 +1,36 @@
 package main.java.set.Pesquisa;
 
-import java.util.Objects;
-
 public class Tarefa {
     //atributos
     private String descricao;
-    private boolean tarefaConcluida;
+    private boolean concluido;
 
-    public Tarefa(String descricao, boolean tarefaConcluida) {
+    public Tarefa(String descricao) {
         this.descricao = descricao;
-        this.tarefaConcluida = tarefaConcluida;
+        this.concluido = false;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public boolean isTarefaConcluida() {
-        return tarefaConcluida;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Tarefa tarefa)) return false;
-        return Objects.equals(getDescricao(), tarefa.getDescricao());
+    public boolean isConcluido() {
+        return concluido;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getDescricao());
+    public void setConcluido(boolean concluido) {
+        this.concluido = concluido;
     }
 
     @Override
     public String toString() {
-        return "Tarefa{" +
-                "descricao='" + descricao + '\'' +
-                ", tarefaConcluida=" + tarefaConcluida +
-                '}';
+        return "\n Tarefa - "  +
+                "\n descricao = " + descricao +
+                "    /    concluido = " + concluido +
+                '\n';
     }
 }
