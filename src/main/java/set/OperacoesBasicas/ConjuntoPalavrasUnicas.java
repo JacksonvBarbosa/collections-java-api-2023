@@ -4,62 +4,73 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ConjuntoPalavrasUnicas {
-    //atributos
-    private Set<String> conjuntoPalavrasUnicas;
-
+    //atributo
+    private Set<String> conjuntoPalavraSet;
 
     public ConjuntoPalavrasUnicas() {
-        this.conjuntoPalavrasUnicas = new HashSet<>();
+        this.conjuntoPalavraSet = new HashSet<>();
     }
 
     public void adicionarPalavra(String palavra) {
-        conjuntoPalavrasUnicas.add(palavra);
+        conjuntoPalavraSet.add(palavra);
     }
 
     public void removerPalavra(String palavra) {
-        if (!conjuntoPalavrasUnicas.isEmpty()){
-            if (conjuntoPalavrasUnicas.contains(palavra)) {
-                conjuntoPalavrasUnicas.remove(palavra);
-            } else {
-                System.out.println("Palavra não existe no Conjunto listado!");
+        String palavraParaRemover = null;
+        if (!conjuntoPalavraSet.isEmpty()) {
+            for (String p : conjuntoPalavraSet) {
+                if (p.equalsIgnoreCase(palavra)) {
+                    palavraParaRemover = p;
+                    break;
+                }
             }
         } else {
-            System.out.println("O conjunto está vazio!");
+            System.out.println("A lista está vázia!!");
         }
+        conjuntoPalavraSet.remove(palavraParaRemover);
     }
 
-    public boolean verificarPalavra(String palavra) {
-        return conjuntoPalavrasUnicas.contains(palavra);
-    }
-
-    public void exibirPalavrasUnicas(){
-        if (!conjuntoPalavrasUnicas.isEmpty()) {
-            System.out.println(conjuntoPalavrasUnicas);
+    public void verificarPalavra(String palavra) {
+        String palavraParaVerificar = null;
+        if (!conjuntoPalavraSet.isEmpty()) {
+            if (conjuntoPalavraSet.contains(palavra)) {
+                System.out.println("A palavra " + palavra + " está na lista");
+                } else {
+                System.out.println("Palavra inexistente no conjunto!!");
+            }
         } else {
-            System.out.println("O conjunto está vazio!");
+            System.out.println("Conjunto está vázia!!");
         }
     }
-
-    @Override
-    public String toString() {
-        return "ConjuntoPalavrasUnicas{" +
-                "conjuntoPalavrasUnicas=" + conjuntoPalavrasUnicas +
-                '}';
-    }
+        public void exibirPalavrasUnicas() {
+            System.out.println(conjuntoPalavraSet);
+        }
 
     public static void main(String[] args) {
-        ConjuntoPalavrasUnicas conjuntoPalavrasUnicas1 = new ConjuntoPalavrasUnicas();
+        ConjuntoPalavrasUnicas conjuntoPalavrasUnicas = new ConjuntoPalavrasUnicas();
 
-        conjuntoPalavrasUnicas1.adicionarPalavra("Futebol");
-        conjuntoPalavrasUnicas1.adicionarPalavra("Voleibol");
-        conjuntoPalavrasUnicas1.adicionarPalavra("Basketbol");
-        conjuntoPalavrasUnicas1.adicionarPalavra("Praia");
+        //adicionar palavra
+        conjuntoPalavrasUnicas.adicionarPalavra("Boné");
+        conjuntoPalavrasUnicas.adicionarPalavra("Pernambuco");
+        conjuntoPalavrasUnicas.adicionarPalavra("Pista");
+        conjuntoPalavrasUnicas.adicionarPalavra("Ponteiro");
+        conjuntoPalavrasUnicas.adicionarPalavra("Chaves");
 
-        conjuntoPalavrasUnicas1.exibirPalavrasUnicas();
+        conjuntoPalavrasUnicas.exibirPalavrasUnicas();
 
-        conjuntoPalavrasUnicas1.removerPalavra("Praia");
-        System.out.println(conjuntoPalavrasUnicas1.verificarPalavra("Basketbol"));
-        conjuntoPalavrasUnicas1.exibirPalavrasUnicas();
+        //remover palavra
+        conjuntoPalavrasUnicas.removerPalavra("Boné");
+        conjuntoPalavrasUnicas.removerPalavra("Pernambuco");
+        conjuntoPalavrasUnicas.removerPalavra("Pista");
+        //conjuntoPalavrasUnicas.removerPalavra("Ponteiro");
+        conjuntoPalavrasUnicas.removerPalavra("Chaves");
+
+        conjuntoPalavrasUnicas.exibirPalavrasUnicas();
+
+        //verificar palavra no set
+        conjuntoPalavrasUnicas.verificarPalavra("Ponteiro");
+
+
 
     }
 }

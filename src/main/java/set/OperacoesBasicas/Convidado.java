@@ -5,38 +5,37 @@ import java.util.Objects;
 public class Convidado {
     //atributos
     private String nome;
-    private int codigoConvite;
+    private int codigo;
 
-    public Convidado(String nome, int codigoConvite) {
+    public Convidado(String nome, int codigo) {
         this.nome = nome;
-        this.codigoConvite = codigoConvite;
+        this.codigo = codigo;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public int getCodigoConvite() {
-        return codigoConvite;
+    public int getCodigo() {
+        return codigo;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Convidado convidado)) return false;
-        return getCodigoConvite() == convidado.getCodigoConvite();
+        return getCodigo() == convidado.getCodigo();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCodigoConvite());
+        return Objects.hash(getCodigo());
     }
 
     @Override
     public String toString() {
-        return "Convidado{" +
-                "nome=" + nome +
-                ", codigoConvite=" + codigoConvite +
-                '}';
+        return "\n Convidado" +
+                "\n nome = " + nome +
+                "\n codigo=" + codigo;
     }
 }
