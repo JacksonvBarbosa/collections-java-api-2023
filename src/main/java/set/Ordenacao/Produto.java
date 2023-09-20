@@ -1,95 +1,78 @@
 package main.java.set.Ordenacao;
 
-import javax.swing.*;
 import java.util.Comparator;
 import java.util.Objects;
 
-public class Produto implements Comparable<Produto> {
-	//atributos
-	private String nome;
-	private long cod;
-	private double preco;
-	private int quantidade;
+public class Produto implements Comparable<Produto>{
+    //atributos
+    private String nome;
+    private long codigo;
+    private double preco;
+    private int quantidade;
 
-	//construtor
-	public Produto( long cod, String nome, double preco, int quantidade) {
-		this.nome = nome;
-		this.cod = cod;
-		this.preco = preco;
-		this.quantidade = quantidade;
-	}
+    public Produto(String nome, long codigo, double preco, int quantidade) {
+        this.nome = nome;
+        this.codigo = codigo;
+        this.preco = preco;
+        this.quantidade = quantidade;
+    }
 
-	@Override
-	public int compareTo(Produto p) {
-		return nome.compareToIgnoreCase(p.getNome());
-	}
+    @Override
+    public int compareTo(Produto p) {
+        return nome.compareToIgnoreCase(p.getNome());
+    }
 
-	//método to String
+    public String getNome() {
+        return nome;
+    }
 
+    public long getCodigo() {
+        return codigo;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Produto produto)) return false;
-		return getCod() == produto.getCod();
-	}
+    public double getPreco() {
+        return preco;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(getCod());
-	}
+    public int getQuantidade() {
+        return quantidade;
+    }
 
-	@Override
-	public String toString() {
-		return "Produto{" +
-				"nome='" + nome + '\'' +
-				", cod=" + cod +
-				", preco=" + preco +
-				", quantidade=" + quantidade +
-				'}';
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Produto produto)) return false;
+        return getCodigo() == produto.getCodigo();
+    }
 
-	//Getters and Setters
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCodigo());
+    }
 
-	public String getNome() {
-		return nome;
-	}
-
-	public long getCod() {
-		return cod;
-	}
-
-	public double getPreco() {
-		return preco;
-	}
-
-	public int getQuantidade() {
-		return quantidade;
-	}
-
+    @Override
+    public String toString() {
+        return "Produto - " +
+                "\n nome = " + nome +
+                " -> codigo = " + codigo +
+                " -> preco = " + preco +
+                "\n quantidade = " + quantidade +
+                "\n\n";
+    }
 }
 
 class ComparatorPorPreco implements Comparator<Produto> {
 
-	@Override
-	public int compare(Produto p1, Produto p2) {
-		return Double.compare(p1.getPreco(), p2.getPreco());
-	}
+    @Override
+    public int compare(Produto p1, Produto p2) {
+        return Double.compare(p1.getPreco(), p2.getPreco());
+    }
 }
 
 class ComparatorPorQuantidade implements Comparator<Produto> {
 
-
-	@Override
-	public int compare(Produto q1, Produto q2) {
-		return Integer.compare(q1.getQuantidade(), q2.getQuantidade());
-	}
-}
-
-class ComparatorPorCodigo implements Comparator<Produto> {
-
-	@Override
-	public int compare(Produto c1, Produto c2) {
-		return Long.compare(c1.getCod(), c2.getCod());
-	}
+    @Override
+    public int compare(Produto p1, Produto p2) {
+        return Integer.compare(p1.getQuantidade(), p2.getQuantidade());
+    }
 }

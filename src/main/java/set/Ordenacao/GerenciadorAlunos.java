@@ -5,35 +5,33 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class GerenciadorAlunos {
-    //atributos
+    //atributo
+    private Set<Alunos> alunosSet;
 
-    Set<Alunos> alunosSet;
-
-    //contrutor
     public GerenciadorAlunos() {
         this.alunosSet = new HashSet<>();
     }
 
-    public void adicionarAluno(String nome, Long matricula, double media) {
-        alunosSet.add(new Alunos(nome, matricula, media));
+    public void adicionarAluno(String nome, long matricula, double nota) {
+        alunosSet.add(new Alunos(nome, matricula, nota));
     }
 
     public void removerAluno(long matricula) {
-        Alunos alunosParaRemover = null;
+        Alunos alunoParaRemover = null;
         if (!alunosSet.isEmpty()) {
             for (Alunos a : alunosSet) {
                 if (a.getMatricula() == matricula) {
-                    alunosParaRemover = a;
+                    alunoParaRemover = a;
                     break;
                 }
             }
-            alunosSet.remove(alunosParaRemover);
+            alunosSet.remove(alunoParaRemover);
         } else {
-            throw new RuntimeException("O conjunto está vazio!");
+            System.out.println("O conjunto de alunos está vázio!!");
         }
-    }
-    public void exibirAlunos() {
-        System.out.println(alunosSet);
+        if (alunoParaRemover == null) {
+            System.out.println("Matricula não encontrada!");
+        }
     }
 
     public Set<Alunos> exibirAlunosPorNome() {
@@ -47,29 +45,30 @@ public class GerenciadorAlunos {
         return alunosPorNota;
     }
 
-    public Set<Alunos> exibirAlunosPorMatricula() {
-        Set<Alunos> alunosPorMatricula = new TreeSet<>(new ComparatorPorMatricula());
-        alunosPorMatricula.addAll(alunosSet);
-        return alunosPorMatricula;
+    public void exibirAlunos() {
+        System.out.println(alunosSet);
     }
 
     public static void main(String[] args) {
-        GerenciadorAlunos gerenciadorAlunos =  new GerenciadorAlunos();
+        GerenciadorAlunos gerenciadorAlunos = new GerenciadorAlunos();
 
-        gerenciadorAlunos.adicionarAluno("Jose", 1L, 7.5d);
-        gerenciadorAlunos.adicionarAluno("Jackson", 4L, 9d);
-        gerenciadorAlunos.adicionarAluno("Maria", 1L, 4.5d);
-        gerenciadorAlunos.adicionarAluno("Manuele", 7L, 6d);
+        //adicionar alunos
+        gerenciadorAlunos.adicionarAluno("Joaozinho", 1010L, 9.0);
+        gerenciadorAlunos.adicionarAluno("Mariazinha", 1019L, 8.0);
+        gerenciadorAlunos.adicionarAluno("Luquinhas", 1011L, 7.5);
+        gerenciadorAlunos.adicionarAluno("Aninha", 1510L, 10.0);
 
-        gerenciadorAlunos.exibirAlunos();
-
+        //exibir alunos por nome
+        System.out.println("Exibindo alunos por nome");
         System.out.println(gerenciadorAlunos.exibirAlunosPorNome());
 
+        //exibir alunos por nota
+        System.out.println("Exibindo alunos por nota");
         System.out.println(gerenciadorAlunos.exibirAlunosPorNota());
 
-        System.out.println(gerenciadorAlunos.exibirAlunosPorMatricula());
-
+        //exibir alunos
+        System.out.println("Exibindo alunos");
+        gerenciadorAlunos.exibirAlunos();
 
     }
-
 }

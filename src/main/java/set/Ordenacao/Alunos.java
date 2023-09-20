@@ -2,29 +2,24 @@ package main.java.set.Ordenacao;
 
 import java.util.Comparator;
 import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
 
-public class Alunos implements Comparable<Alunos> {
+public class Alunos implements Comparable<Alunos>{
     //atributos
     private String nome;
     private long matricula;
     private double nota;
 
-    //construtor
     public Alunos(String nome, long matricula, double nota) {
         this.nome = nome;
         this.matricula = matricula;
         this.nota = nota;
     }
 
-    //metodo comparable por nome
     @Override
     public int compareTo(Alunos a) {
-        return nome.compareToIgnoreCase(a.getNome());
+        return nome.compareTo(a.getNome());
     }
 
-    //Getters and Setters
     public String getNome() {
         return nome;
     }
@@ -37,7 +32,6 @@ public class Alunos implements Comparable<Alunos> {
         return nota;
     }
 
-    //metodos para formatação e organização
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,30 +44,20 @@ public class Alunos implements Comparable<Alunos> {
         return Objects.hash(getMatricula());
     }
 
-
-
     @Override
     public String toString() {
-        return "Alunos{" +
-                "nome='" + nome + '\'' +
-                ", matricula=" + matricula +
-                ", nota=" + nota +
-                '}';
+        return "Alunos - " +
+                "\n nome = " + nome +
+                " -> matricula = " + matricula +
+                " -> nota = " + nota +
+                "\n\n";
     }
 }
 
 class ComparatorPorNota implements Comparator<Alunos> {
 
     @Override
-    public int compare(Alunos n1, Alunos n2) {
-        return Double.compare(n1.getNota(), n2.getNota());
-    }
-}
-
-class ComparatorPorMatricula implements Comparator<Alunos> {
-
-    @Override
-    public int compare(Alunos m1, Alunos m2) {
-        return Long.compare(m1.getMatricula(), m2.getMatricula());
+    public int compare(Alunos a1, Alunos a2) {
+        return Double.compare(a1.getNota(), a2.getNota());
     }
 }
